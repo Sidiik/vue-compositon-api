@@ -1,27 +1,31 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p ref="paragraph">my name is {{ name }} and my age is {{ age }}</p>
-    <input type="text" v-model="name" />
-    <button @click="handleClick">Click me</button>
+    <h2>Search</h2>
+    <input type="text" v-model="search" />
+    <p>Searched term {{ search }}</p>
+    <div v-if="matchingList.length">
+      <div v-for="name in matchingList" :key="name">
+        {{ name }}
+      </div>
+    </div>
+    <div v-else>
+      can't be found that
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { ref, reactive, computed } from "@vue/reactivity";
 export default {
   name: "Home",
   setup() {
-    const paragraph = ref(null);
-    const name = ref("sidiik");
-    const age = ref(45);
-    const handleClick = () => {
-      name.value = "sidiik omar";
-      age.value = 34;
-    };
-    console.log(paragraph);
+    const search = ref("");
+    const names = ref(["ahmed", "sadiq", "nimco", "asiya"]);
 
-    return { handleClick, paragraph, name, age };
+    const matchingList = computed(() => {
+      return names.value.filter((name) => name.includes(search.value));
+    });
+    return { search, names, matchingList };
   },
 };
 </script>
