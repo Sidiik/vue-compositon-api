@@ -10,11 +10,7 @@ import { onMounted, onUnmounted, onUpdated, ref } from "@vue/runtime-core";
 export default {
   props: ["posts"],
   components: { PostItem },
-  setup() {
-    onMounted(() => console.log("component mounted"));
-    onUpdated(() => console.log("updated"));
-    onUnmounted(() => console.log("unmounted"));
-  },
+  setup() {},
 };
 </script>
 

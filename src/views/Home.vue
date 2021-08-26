@@ -3,8 +3,6 @@
   <div v-if="showPosts">
     <PostsList :posts="posts" />
   </div>
-
-  <button @click="showPosts = !showPosts">Show Hide content</button>
 </template>
 
 <script>
