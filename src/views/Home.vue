@@ -1,8 +1,10 @@
 <template>
   <h1>Posts</h1>
-  <div>
+  <div v-if="showPosts">
     <PostsList :posts="posts" />
   </div>
+
+  <button @click="showPosts = !showPosts">Show Hide content</button>
 </template>
 
 <script>
@@ -25,7 +27,9 @@ export default {
           "tempor felis ac facilisis. Praesent fermentum elit ut metus dapibus, sed suscipit ante ultricies. Nunc ornare lacus at lacus euismod consequat. In hac habitasse platea dictumst. Integer et dui volutpat, pretium arcu vitae, porttitor libero. Aliquam sed velit placerat, ultrices magna congue, molestie urna. Nunc vehicula augue sed orci euismod sodales. In ac fringilla libero, in dignissim sem. Cras maximus mauris et neque volutpat vulputate.",
       },
     ]);
-    return { posts };
+
+    const showPosts = ref(true);
+    return { posts, showPosts };
   },
 };
 </script>
