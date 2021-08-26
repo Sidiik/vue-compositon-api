@@ -1,31 +1,33 @@
 <template>
-  <div class="home">
-    <h2>Search</h2>
-    <input type="text" v-model="search" />
-    <p>Searched term {{ search }}</p>
-    <div v-if="matchingList.length">
-      <div v-for="name in matchingList" :key="name">
-        {{ name }}
-      </div>
-    </div>
-    <div v-else>
-      can't be found that
-    </div>
+  <h1>Posts</h1>
+  <div>
+    <PostsList :posts="posts" />
   </div>
 </template>
 
 <script>
-import { ref, reactive, computed } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
+import PostsList from "../components/PostsList.vue";
 export default {
-  name: "Home",
+  components: { PostsList },
   setup() {
-    const search = ref("");
-    const names = ref(["ahmed", "sadiq", "nimco", "asiya"]);
-
-    const matchingList = computed(() => {
-      return names.value.filter((name) => name.includes(search.value));
-    });
-    return { search, names, matchingList };
+    const posts = ref([
+      {
+        id: 1,
+        title: "top 5 css frameworks",
+        body:
+          "tempor felis ac facilisis. Praesent fermentum elit ut metus dapibus, sed suscipit ante ultricies. Nunc ornare lacus at lacus euismod consequat. In hac habitasse platea dictumst. Integer et dui volutpat, pretium arcu vitae, porttitor libero. Aliquam sed velit placerat, ultrices magna congue, molestie urna. Nunc vehicula augue sed orci euismod sodales. In ac fringilla libero, in dignissim sem. Cras maximus mauris et neque volutpat vulputate.",
+      },
+      {
+        id: 2,
+        title: "How to check if my softeware is updated",
+        body:
+          "tempor felis ac facilisis. Praesent fermentum elit ut metus dapibus, sed suscipit ante ultricies. Nunc ornare lacus at lacus euismod consequat. In hac habitasse platea dictumst. Integer et dui volutpat, pretium arcu vitae, porttitor libero. Aliquam sed velit placerat, ultrices magna congue, molestie urna. Nunc vehicula augue sed orci euismod sodales. In ac fringilla libero, in dignissim sem. Cras maximus mauris et neque volutpat vulputate.",
+      },
+    ]);
+    return { posts };
   },
 };
 </script>
+
+<style></style>
